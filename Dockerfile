@@ -27,4 +27,8 @@ RUN \
     echo "sys.confirmedUpdateInstallationString=true" >> /usr/src/atlassian-servicedesk.varfile && \
     /usr/src/atlassian-servicedesk-3.8.1-x64.bin -q -varfile /usr/src/atlassian-servicedesk.varfile
 
+# Add jira user to 'nobody' group (as secondary)
+RUN \
+    usermod -a -G nogroup jira
+
 CMD ["/opt/atlassian/jira/bin/start-jira.sh", "-fg"]
